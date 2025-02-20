@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Settings</title>
+    <link rel="stylesheet" href="security.css">
+    <script>
+        function toggleTwoFactorAuth() {
+            alert('Google Authenticator 2FA has been enabled.');
+        }
+
+        function setSessionTimeout() {
+            const timeoutDuration = document.querySelector('.timeout-input').value;
+            if (timeoutDuration) {
+                alert(`Session timeout has been set to ${timeoutDuration} minutes.`);
+            } else {
+                alert('Please set a valid session duration.');
+            }
+        }
+
+        function terminateSession(deviceName) {
+            if (confirm(`Are you sure you want to terminate the session on ${deviceName}?`)) {
+                alert(`${deviceName} session terminated.`);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="settings-container">
+        <h1>Settings</h1>
+        
+        <section class="account-security">
+            <h2>Account Security</h2>
+
+            <div class="setting-item">
+                <div class="description">
+                    <strong>Google Authenticator</strong>
+                    <p>Turn on 2FA to enhance security</p>
+                </div>
+                <button class="btn" onclick="toggleTwoFactorAuth()">Turn On</button>
+            </div>
+
+            <div class="setting-item">
+                <div class="description">
+                    <strong>Session Timeout</strong>
+                    <p>Set Duration:</p>
+                </div>
+                <input type="time" class="timeout-input">
+                <button class="btn" onclick="setSessionTimeout()">Turn On</button>
+            </div>
+        </section>
+
+        <section class="active-sessions">
+            <h2>Devices and Active Sessions</h2>
+
+            <div class="session-item">
+                <div class="device-info">Apple Mac10</div>
+                <button class="btn" onclick="terminateSession('Apple Mac10')">Terminate</button>
+            </div>
+
+            <div class="session-item">
+                <div class="device-info">Windows 10</div>
+                <button class="btn" onclick="terminateSession('Windows 10')">Terminate</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

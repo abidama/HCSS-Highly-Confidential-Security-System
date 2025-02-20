@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Locker</title>
+    <link rel="stylesheet" href="bank.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Bank Account Information Locker</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="bank-name">Bank Name:</label>
+                <input type="text" id="bank-name" name="bank-name" placeholder="Enter Bank Name">
+            </div>
+            <div class="form-group">
+                <label for="account-number">Account Number:</label>
+                <input type="text" id="account-number" name="account-number" placeholder="Enter Account Number">
+            </div>
+            <div class="form-group">
+                <label for="ifsc-code">IFSC Code:</label>
+                <input type="text" id="ifsc-code" name="ifsc-code" placeholder="Enter IFSC Code">
+            </div>
+            <div class="form-group">
+                <button type="submit">Save Info</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const bankName = document.getElementById("bank-name").value.trim();
+                const accountNumber = document.getElementById("account-number").value.trim();
+                const ifscCode = document.getElementById("ifsc-code").value.trim();
+                if (!bankName || !accountNumber || !ifscCode) {
+                    alert("Please fill out all fields.");
+                    return;
+                }
+                console.log("Bank Name:", bankName);
+                console.log("Account Number:", accountNumber);
+                console.log("IFSC Code:", ifscCode);
+                alert("Bank account information saved successfully!");
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Locker</title>
+    <link rel="stylesheet" href="video.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Media Locker</h2>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="media-file">Upload Media (Videos):</label>
+                <input type="file" id="media-file" name="media-file" accept="video/*">
+            </div>
+            <div class="form-group">
+                <button type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const mediaFile = document.getElementById("media-file").files[0];
+
+                if (!mediaFile) {
+                    alert("Please select a video file to upload.");
+                    return;
+                }
+
+                const allowedTypes = ["video/mp4", "video/webm", "video/ogg"];
+                if (!allowedTypes.includes(mediaFile.type)) {
+                    alert("Invalid file type. Please upload a video file (mp4, webm, ogg).");
+                    return;
+                }
+
+                console.log("File Name:", mediaFile.name);
+                console.log("File Size:", (mediaFile.size / 1024 / 1024).toFixed(2), "MB");
+                console.log("File Type:", mediaFile.type);
+
+                alert("Video file uploaded successfully!");
+
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>

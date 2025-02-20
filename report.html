@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // 
+
+            const reportType = document.getElementById('report-type').value;
+            const reportIssue = document.getElementById('report-issue').value;
+
+            if (reportType && reportIssue) {
+                alert('Your report has been successfully submitted!');
+                document.querySelector('form').reset();
+            } else {
+                alert('Please fill out all fields before submitting.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Report</h1>
+        <form onsubmit="handleSubmit(event)">
+            <label for="report-type">Select Report:</label>
+            <select id="report-type" name="report-type" required>
+                <option value="" disabled selected>Choose Report</option>
+                <option value="admin">Admin Report</option>
+                <option value="user">User Report</option>
+            </select>
+
+            <label for="report-issue">Enter Report/Issue (Max 100 words):</label>
+            <textarea id="report-issue" name="report-issue" rows="4" maxlength="100" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

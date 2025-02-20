@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="profile.css">
+    <script>
+        function editProfile() {
+            document.querySelector('#full-name').disabled = false;
+            document.querySelector('#email').disabled = false;
+            document.querySelector('#phone').disabled = false;
+            document.querySelector('#address').disabled = false;
+            document.querySelector('#save-btn').style.display = 'inline-block';
+            document.querySelector('#edit-btn').style.display = 'none';
+        }
+
+        function saveProfile() {
+            const name = document.querySelector('#full-name').value;
+            const email = document.querySelector('#email').value;
+            const phone = document.querySelector('#phone').value;
+            const address = document.querySelector('#address').value;
+
+            document.querySelector('.profile-name').textContent = name;
+            document.querySelector('.profile-email').textContent = email;
+            document.querySelector('.value:nth-of-type(1)').textContent = name;
+            document.querySelector('.value:nth-of-type(2)').textContent = email;
+            document.querySelector('.value:nth-of-type(3)').textContent = phone;
+            document.querySelector('.value:nth-of-type(4)').textContent = address;
+
+            document.querySelector('#full-name').disabled = true;
+            document.querySelector('#email').disabled = true;
+            document.querySelector('#phone').disabled = true;
+            document.querySelector('#address').disabled = true;
+            document.querySelector('#save-btn').style.display = 'none';
+            document.querySelector('#edit-btn').style.display = 'inline-block';
+
+            alert("Profile updated successfully!");
+        }
+
+        function deleteAccount() {
+            if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                alert("Your account has been deleted.");
+            }
+        }
+
+        function updateProfileImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imageUrl = reader.result;
+                document.querySelector('.profile-picture').src = imageUrl;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <input type="file" accept="image/*" onchange="updateProfileImage(event)" class="profile-image-input" style="display:none">
+            <img src="profile-picture.jpg" alt="Profile Picture" class="profile-picture" onclick="document.querySelector('.profile-image-input').click()">
+            <h1 class="profile-name">John Doe</h1>
+            <p class="profile-email">johndoe@example.com</p>
+        </div>
+
+        <div class="profile-details">
+            <h2>Personal Information</h2>
+            <div class="detail-item">
+                <span class="label">Full Name:</span>
+                <input type="text" id="full-name" class="value" value="John Doe" disabled>
+            </div>
+            <div class="detail-item">
+                <span class="label">Email:</span>
+                <input type="email" id="email" class="value" value="johndoe@example.com" disabled>
+            </div>
+            <div class="detail-item">
+                <span class="label">Phone:</span>
+                <input type="text" id="phone" class="value" value="+91 234 567 890" disabled>
+            </div>
+            <div class="detail-item">
+                <span class="label">Address:</span>
+                <input type="text" id="address" class="value" value="123 Main Street, Cityville, USA" disabled>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <button class="btn" id="edit-btn" onclick="editProfile()">Edit Profile</button>
+            <button class="btn" id="save-btn" style="display:none" onclick="saveProfile()">Save Profile</button>
+            <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+        </div>
+    </div>
+</body>
+</html>
